@@ -10,6 +10,8 @@ import UIKit
 
 class ProgrammatiqueController: UIViewController {
     
+    @IBOutlet weak var scrool: UIScrollView!
+    
     var monPremierUIView: UIView?
     var monPremierLabel: UILabel?
     var monPremierBoutton: UIButton?
@@ -21,7 +23,7 @@ class ProgrammatiqueController: UIViewController {
         monPremierUIView?.backgroundColor = UIColor(red: 22 / 255, green: 200 / 255, blue: 76 / 255, alpha: 1)
         monPremierUIView?.layer.cornerRadius = 25
         guard monPremierUIView != nil else { return }
-        view.addSubview(monPremierUIView!)
+        scrool.addSubview(monPremierUIView!)
        
         monPremierLabel = UILabel(frame: CGRect(x: 0, y: monPremierUIView!.frame.maxY + 20, width: view.frame.width, height: 50))
         monPremierLabel?.text = "Coucou je suis un texte"
@@ -29,7 +31,7 @@ class ProgrammatiqueController: UIViewController {
         monPremierLabel?.textColor = UIColor.white
         monPremierLabel?.font = UIFont(name: "Chalkduster", size: 20)
         monPremierLabel?.textAlignment = .center
-        view.addSubview(monPremierLabel!)
+        scrool.addSubview(monPremierLabel!)
         
         let rectDeMonBoutton = CGRect(x: view.frame.width / 2 - 75, y: monPremierLabel!.frame.maxY + 220, width: 150, height: 40)
         monPremierBoutton = UIButton(frame: rectDeMonBoutton)
@@ -39,7 +41,7 @@ class ProgrammatiqueController: UIViewController {
         monPremierBoutton?.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
         monPremierBoutton?.layer.borderColor = UIColor.white.cgColor
         monPremierBoutton?.layer.borderWidth = 2
-        view.addSubview(monPremierBoutton!)
+        scrool.addSubview(monPremierBoutton!)
        
         
         monPremierBoutton?.addTarget(self, action: #selector(boutonAppuye), for: .touchUpInside)
@@ -51,13 +53,26 @@ class ProgrammatiqueController: UIViewController {
         maPremiereIV?.contentMode = .scaleAspectFill
         maPremiereIV?.clipsToBounds = true
         maPremiereIV?.layer.cornerRadius = maPremiereIV!.frame.width / 2
-        view.addSubview(maPremiereIV!)
+        scrool.addSubview(maPremiereIV!)
         //view.sendSubviewToBack(maPremiereIV!)
         
-        view.bringSubviewToFront(monPremierBoutton!)
+        scrool.bringSubviewToFront(monPremierBoutton!)
         
         maPremiereIV?.isUserInteractionEnabled = true
         maPremiereIV?.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(imageAppuye)))
+        
+        var couleurs :[UIColor] = [.red, .blue, .white, .black]
+        var maximum: CGFloat = (maPremiereIV?.frame.maxY)!
+        
+        for couleur in couleurs {
+            let vue = UIView(frame: CGRect(x: 0, y: maximum + 10, width: 100, height: 100))
+            vue.backgroundColor = couleur
+            scrool.addSubview(vue)
+            maximum = vue.frame.maxY
+        }
+        
+        scrool.contentSize = CGSize(width: view.frame.width, height: maximum + 100)
+        
     }
     
     @objc func imageAppuye() {

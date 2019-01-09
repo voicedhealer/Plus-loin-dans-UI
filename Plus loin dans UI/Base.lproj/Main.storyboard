@@ -17,14 +17,28 @@
                     <view key="view" contentMode="scaleToFill" id="JWB-aI-v8H">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vPT-3r-EJN">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="617"/>
+                            </scrollView>
+                        </subviews>
                         <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="vPT-3r-EJN" firstAttribute="leading" secondItem="JWB-aI-v8H" secondAttribute="leadingMargin" id="NZ7-yu-i0b"/>
+                            <constraint firstItem="vPT-3r-EJN" firstAttribute="top" secondItem="JWB-aI-v8H" secondAttribute="topMargin" id="bF3-cz-WiN"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="vPT-3r-EJN" secondAttribute="bottom" id="h0r-MQ-nhV"/>
+                            <constraint firstItem="vPT-3r-EJN" firstAttribute="trailing" secondItem="JWB-aI-v8H" secondAttribute="trailingMargin" id="tqQ-eX-C4g"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="hfM-nK-XI7"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Item 2" id="JA6-wb-jCF"/>
+                    <connections>
+                        <outlet property="scrool" destination="vPT-3r-EJN" id="d6O-En-uC7"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XyF-ve-3XN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="105" y="205"/>
+            <point key="canvasLocation" x="104.8" y="204.64767616191907"/>
         </scene>
         <!--Item 1-->
         <scene sceneID="b7J-7u-AYd">
