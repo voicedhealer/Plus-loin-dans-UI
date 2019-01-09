@@ -11,7 +11,9 @@ import UIKit
 class ProgrammatiqueController: UIViewController {
     
     var monPremierUIView: UIView?
-    var monPremierLabel : UILabel?
+    var monPremierLabel: UILabel?
+    var monPremierBoutton: UIButton?
+    var maPremiereIV: UIImageView?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,11 +31,41 @@ class ProgrammatiqueController: UIViewController {
         monPremierLabel?.textAlignment = .center
         view.addSubview(monPremierLabel!)
         
+        let rectDeMonBoutton = CGRect(x: view.frame.width / 2 - 75, y: monPremierLabel!.frame.maxY + 220, width: 150, height: 40)
+        monPremierBoutton = UIButton(frame: rectDeMonBoutton)
+        monPremierBoutton?.setTitle("Appuyer", for: UIControl.State.normal)
+        monPremierBoutton?.tintColor = UIColor.red
+        monPremierBoutton?.backgroundColor = UIColor.black
+        monPremierBoutton?.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
+        monPremierBoutton?.layer.borderColor = UIColor.white.cgColor
+        monPremierBoutton?.layer.borderWidth = 2
+        view.addSubview(monPremierBoutton!)
+       
         
+        monPremierBoutton?.addTarget(self, action: #selector(boutonAppuye), for: .touchUpInside)
         
-    
-    
-
-   
+        let largeur = view.frame.width - 60
+        let rectIV = CGRect(x: 30, y: (view.frame.height / 2) - (largeur / 2), width: largeur, height: largeur)
+        maPremiereIV = UIImageView(frame: rectIV)
+        maPremiereIV?.image = #imageLiteral(resourceName: "codabee")
+        maPremiereIV?.contentMode = .scaleAspectFill
+        maPremiereIV?.clipsToBounds = true
+        maPremiereIV?.layer.cornerRadius = maPremiereIV!.frame.width / 2
+        view.addSubview(maPremiereIV!)
+        //view.sendSubviewToBack(maPremiereIV!)
+        
+        view.bringSubviewToFront(monPremierBoutton!)
+        
+        maPremiereIV?.isUserInteractionEnabled = true
+        maPremiereIV?.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(imageAppuye)))
     }
+    
+    @objc func imageAppuye() {
+        print("image touché")
+    }
+    
+    @objc func boutonAppuye() {
+        print("Tu as bien appuyé")
+    }
+    
 }
